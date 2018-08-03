@@ -1,3 +1,5 @@
+/* eslint no-console: ["error", { allow: ["info", "error"] }] */
+
 const express = require('express');
 const next = require('next');
 const helmet = require('helmet');
@@ -6,7 +8,7 @@ const favicon = require('serve-favicon');
 const after = require('aftertime');
 const router = require('./router');
 
-module.exports = function () {
+module.exports = function ServerFactory() {
   const dev = process.env.NODE_ENV !== 'production';
   const app = next({ dev, dir: './src' });
   // const handle = app.getRequestHandler();
@@ -59,7 +61,7 @@ module.exports = function () {
 
       server.listen(process.env.SERVER_PORT, (err) => {
         if (err) throw err;
-        console.log(`> Ready on port ${process.env.SERVER_PORT}`);
+        console.info(`> Ready on port ${process.env.SERVER_PORT}`);
       });
     })
     .catch((ex) => {

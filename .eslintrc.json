@@ -7,9 +7,6 @@
   "rules": {
     "semi" : [2, "always"],
     "arrow-parens": [2, "always"],
-    "indent": [2, 2],
-    "no-console": [0],
-    "func-names": [2, "never"],
     "no-underscore-dangle" : 0,
     "react/jsx-uses-vars" : [2],
     "no-param-reassign" : ["error", { "props": false }],

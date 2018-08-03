@@ -44,7 +44,6 @@ class Aside extends React.Component {
   };
 
   handleDrawerToggle = () => {
-    console.log('asdas');
     this.setState((state) => ({ mobileOpen: !state.mobileOpen }));
   };
 
