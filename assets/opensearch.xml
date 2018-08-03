@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>valinor Search</ShortName>
+	<Description>Search valinor</Description>
+	<Developer>valinor</Developer>
+	<Tags>valinor search</Tags>
+	<Contact>dev@example.com</Contact>
+	<InputEncoding>UTF-8</InputEncoding>
+	<OutputEncoding>UTF-8</OutputEncoding>
+	<Image width="16" height="16" type="image/x-icon">https://www.example.com/favicon.ico</Image>
+	<Image width="72" height="72" type="image/png">https://www.example.com/public/images/icons/manifest/icon-72x72.png</Image>
+	<Url type="application/opensearchdescription+xml" rel="self" template="http://www.example.com/opensearch.xml" />
+	<Url type="text/html" rel="results" method="GET" template="https://www.example.com/search">
+		<Param name="query" value="{searchTerms}"/>
+	</Url>
+	<Url type="application/x-suggestions+json" rel="results" method="GET" template="http://www.example.com/searchsuggestions">
+		<Param name="query" value="{searchTerms}"/>
+		<Param name="content-type" value="json"/>
+	</Url>
+	<Query role="example" searchTerms="example" />
+	<Language>en-us</Language>
+	<Language>en-gb</Language>
+	<Language>en-in</Language>
+	<moz:SearchForm>https://www.example.com/</moz:SearchForm>
+	<moz:UpdateUrl>https://www.example.com/opensearch.xml</moz:UpdateUrl>
+</OpenSearchDescription>

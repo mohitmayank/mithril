@@ -1,0 +1,48 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb-base",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "semi" : [2, "always"],
+    "arrow-parens": [2, "always"],
+    "quotes": [2, "double"],
+    "indent": [2, 2],
+    "no-console": [0],
+    "func-names": [2, "never"],
+    "no-underscore-dangle" : 0,
+    "react/jsx-uses-vars" : [2],
+    "no-param-reassign" : ["error", { "props": false }],
+    "class-methods-use-this": ["error", {
+      "exceptMethods": [
+        "render",
+        "getInitialState",
+        "getDefaultProps",
+        "getChildContext",
+        "componentWillMount",
+        "componentDidMount",
+        "componentWillReceiveProps",
+        "shouldComponentUpdate",
+        "componentWillUpdate",
+        "componentDidUpdate",
+        "componentWillUnmount"
+      ]
+    }]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "node": true,
+    "mongo": true
+  },
+  "globals": {
+    "document": false,
+    "describe": false,
+    "it": false,
+    "assert": false,
+    "before": false,
+    "after": false
+  }
+}

@@ -1,0 +1,15 @@
+version: '3'
+services:
+  valinor:
+    image: node:9
+    ports:
+      - "7000:7000"
+      - "9231:9229"
+    volumes:
+      - ./:/app
+    command : ["bash"]
+    working_dir : /app
+    tty: true
+    stdin_open: true
+    logging :
+      driver : "none"
