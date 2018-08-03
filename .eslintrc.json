@@ -7,7 +7,6 @@
   "rules": {
     "semi" : [2, "always"],
     "arrow-parens": [2, "always"],
-    "quotes": [2, "double"],
     "indent": [2, 2],
     "no-console": [0],
     "func-names": [2, "never"],

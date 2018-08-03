@@ -1,6 +1,5 @@
-import React from "react";
 import MUIButton from '@material-ui/core/Button';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Button = styled(MUIButton)`
   && {
@@ -9,19 +8,19 @@ const Button = styled(MUIButton)`
 `;
 
 Button.defaultProps = {
-  variant : "contained"
+  variant: 'contained',
 };
 
 const PrimaryButton = styled(Button)``;
 
 PrimaryButton.defaultProps = {
-  color : "primary"
+  color: 'primary',
 };
 
 const SecondaryButton = styled(Button)``;
 
 SecondaryButton.defaultProps = {
-  color : "secondary"
+  color: 'secondary',
 };
 
 export {

@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 // import getRandomString from "micro-helpers/getRandomString";
 
 let store = null;
@@ -8,14 +8,14 @@ class Store {
 
   constructor(state) {
     if (!state) {
-      throw new Error("State is undefined");
+      throw new Error('State is undefined');
     }
   }
 }
 
 function getInitialState() {
   return {
-    _p: "_p",
+    _p: '_p',
   };
 }
 

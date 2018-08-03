@@ -1,17 +1,17 @@
-import React from "react";
-import { string, func } from "prop-types";
-import styled from "styled-components";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
-import { SecondaryButton, Button } from "../blocks/Button";
-import { Link } from "../../router";
-import theme from "../../lib/theme";
+import React from 'react';
+import { string, func } from 'prop-types';
+import styled from 'styled-components';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import { SecondaryButton, Button } from '../blocks/Button';
+import { Link } from '../../router';
+import theme from '../../lib/theme';
 
 const BarWrapper = styled.div`
   flex-grow: 1;
@@ -92,7 +92,7 @@ class Header extends React.Component {
             {auth ? (
               <div>
                 <IconButton
-                  aria-owns={open ? "menu-appbar" : null}
+                  aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
@@ -103,12 +103,12 @@ class Header extends React.Component {
                   id="menu-appbar"
                   anchorEl={anchorEl}
                   anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                    vertical: 'top',
+                    horizontal: 'right',
                   }}
                   transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+                    vertical: 'top',
+                    horizontal: 'right',
                   }}
                   open={open}
                   onClose={this.handleClose}

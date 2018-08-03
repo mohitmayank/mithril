@@ -1,37 +1,37 @@
 const theme = {
   colors: {
     text: {
-      light: "#fff",
-      dark: "rgba(0,0,0,0.87)",
+      light: '#fff',
+      dark: 'rgba(0,0,0,0.87)',
     },
     bg: {
-      body: "#F3F2F5",
-      content: "#fff",
+      body: '#F3F2F5',
+      content: '#fff',
     },
   },
   sizes: {
     header: {
-      height: "56px",
+      height: '56px',
     },
     footer: {
-      height: "56px",
+      height: '56px',
     },
     main: {
-      width: "1000px",
+      width: '1000px',
     },
     aside: {
-      width: "256px",
+      width: '256px',
     },
   },
   spacing: {
-    padding: "10px",
+    padding: '10px',
   },
-  misc : {
-    menuBreakPoint : 'md',
-    menuMediaBreakPoint(mui){
-      return mui.breakpoints.values[theme.misc.menuBreakPoint]+'px';
+  misc: {
+    menuBreakPoint: 'md',
+    menuMediaBreakPoint(mui) {
+      return `${mui.breakpoints.values[theme.misc.menuBreakPoint]}px`;
     },
-  }
+  },
 };
 
 export default theme;

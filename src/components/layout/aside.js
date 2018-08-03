@@ -1,9 +1,9 @@
-import React from "react";
-import { bool, func } from "prop-types";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import styled from "styled-components";
+import React from 'react';
+import { bool, func } from 'prop-types';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import styled from 'styled-components';
 
 const AsideContainer = styled.div`
   padding : ${(props) => props.theme.spacing.padding};
@@ -30,7 +30,7 @@ function drawer() {
     <br/>
     <br/>
     <br/>
-    <div style={{height : '800px', display : 'none'}}></div>
+    <div style={{ height: '800px', display: 'none' }}></div>
     <br/>
     <br/>
     asdasd
@@ -44,7 +44,7 @@ class Aside extends React.Component {
   };
 
   handleDrawerToggle = () => {
-    console.log("asdas");
+    console.log('asdas');
     this.setState((state) => ({ mobileOpen: !state.mobileOpen }));
   };
 

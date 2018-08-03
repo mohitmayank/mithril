@@ -1,18 +1,18 @@
-import React from "react";
-import Link from "next/link";
-import { inject, observer } from "mobx-react";
-import { object } from "prop-types";
-import Clock from "./Clock";
+import React from 'react';
+import Link from 'next/link';
+import { inject, observer } from 'mobx-react';
+import { object } from 'prop-types';
+import Clock from './Clock';
 
 
 const links = [
-  { href: "https://github.com/segmentio/create-next-app", label: "Github" },
+  { href: 'https://github.com/segmentio/create-next-app', label: 'Github' },
 ].map((link) => {
   link.key = `nav-link-${link.href}-${link.label}`;
   return link;
 });
 
-@inject("store") @observer
+@inject('store') @observer
 class Nav extends React.Component {
   componentDidMount() {
     this.props.store.start();

@@ -1,5 +1,5 @@
-const routes = require("next-routes");
+const routes = require('next-routes');
 
 module.exports = routes()
   .add('signup')
-  .add("blog", "/blog/:slug");
+  .add('blog', '/blog/:slug');

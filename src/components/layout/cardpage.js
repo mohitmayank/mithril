@@ -1,8 +1,8 @@
-import React from "react";
-import { string } from "prop-types";
+import React from 'react';
+import { string, node } from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import styled from "styled-components";
-import Page from "./page";
+import styled from 'styled-components';
+import Page from './page';
 
 const PagePaper = styled(Paper)`
   && {
@@ -17,7 +17,7 @@ const PagePaper = styled(Paper)`
 `;
 
 class CardPage extends React.Component {
-  render(){
+  render() {
     return (
       <Page title={this.props.title}>
         <PagePaper elevation={1}>
@@ -25,11 +25,12 @@ class CardPage extends React.Component {
         </PagePaper>
       </Page>
     );
-  };
+  }
 }
 
 CardPage.propTypes = {
-  title : string.isRequired
+  title: string.isRequired,
+  children: node,
 };
 
 export default CardPage;

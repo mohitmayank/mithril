@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import Typography from "@material-ui/core/Typography";
-import { Link } from "../../router";
+import React from 'react';
+import styled from 'styled-components';
+import Typography from '@material-ui/core/Typography';
+import { Link } from '../../router';
 
 const StyledFooter = styled.footer`
   text-align : center;

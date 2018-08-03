@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import {
   oneOfType, arrayOf, node, string, object,
-} from "prop-types";
-import styled from "styled-components";
-import { autorun } from "mobx";
-import { inject, observer } from "mobx-react";
-import Head from "./head";
-import Header from "./header";
-import Footer from "./footer";
-import Aside from "./aside";
-import theme from "../../lib/theme";
+} from 'prop-types';
+import styled from 'styled-components';
+import { autorun } from 'mobx';
+import { inject, observer } from 'mobx-react';
+import Head from './head';
+import Header from './header';
+import Footer from './footer';
+import Aside from './aside';
+import theme from '../../lib/theme';
 
 const PageWrapper = styled.div`
   position : fixed;
@@ -67,9 +67,9 @@ const PageContentContainer = styled.div`
 `;
 
 const sideBarCloseMargin = `-${theme.sizes.aside.width}`;
-const sideBarId = "asideNavDrawer";
+const sideBarId = 'asideNavDrawer';
 
-@inject("store") @observer
+@inject('store') @observer
 class Page extends React.Component {
   state = {
     mobileAsideOpen: false,
@@ -83,7 +83,7 @@ class Page extends React.Component {
   componentDidMount() {
     this.disposeAsideListner = autorun(() => {
       if (this.store.desktopAsideOpen) {
-        document.getElementById(sideBarId).style.marginLeft = "0";
+        document.getElementById(sideBarId).style.marginLeft = '0';
       } else {
         document.getElementById(sideBarId).style.marginLeft = sideBarCloseMargin;
       }

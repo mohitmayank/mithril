@@ -1,10 +1,10 @@
-import React from "react";
-import Document, { Head, Main, NextScript } from "next/document";
-import JssProvider from "react-jss/lib/JssProvider";
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+import JssProvider from 'react-jss/lib/JssProvider';
 // import flush from "styled-jsx/server";
-import { ServerStyleSheet } from "styled-components";
-import uglifycss from "uglifycss";
-import getPageContext from "../lib/getPageContext";
+import { ServerStyleSheet } from 'styled-components';
+import uglifycss from 'uglifycss';
+import getPageContext from '../lib/getPageContext';
 
 class MyDocument extends Document {
   render() {
@@ -20,8 +20,8 @@ class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-              "user-scalable=0, initial-scale=1, "
-              + "minimum-scale=1, width=device-width, height=device-height"
+              'user-scalable=0, initial-scale=1, '
+              + 'minimum-scale=1, width=device-width, height=device-height'
             }
           />
           {/* PWA primary color */}

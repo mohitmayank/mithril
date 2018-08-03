@@ -1,13 +1,13 @@
-import React from "react";
-import App, { Container } from "next/app";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import JssProvider from "react-jss/lib/JssProvider";
-import { Provider } from "mobx-react";
-import { ThemeProvider } from "styled-components";
-import getPageContext from "../lib/getPageContext";
-import { StoreFactory, getInitialState } from "../store";
-import theme from "../lib/theme";
+import React from 'react';
+import App, { Container } from 'next/app';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { Provider } from 'mobx-react';
+import { ThemeProvider } from 'styled-components';
+import getPageContext from '../lib/getPageContext';
+import { StoreFactory, getInitialState } from '../store';
+import theme from '../lib/theme';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -40,7 +40,7 @@ class MyApp extends App {
 
   componentDidMount() {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }

@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 // import Link from "next/link";
-import { Provider } from "mobx-react";
-import { number, bool } from "prop-types";
-import styled from "styled-components";
-import getRandomString from "micro-helpers/getRandomString";
-import Button from "@material-ui//core/Button";
-import Head from "../components/head";
-import Nav from "../components/nav";
-import initStore from "../store";
-import { Link } from "../router";
+import { Provider } from 'mobx-react';
+import { number, bool } from 'prop-types';
+import styled from 'styled-components';
+import getRandomString from 'micro-helpers/getRandomString';
+import Button from '@material-ui//core/Button';
+import Head from '../components/head';
+import Nav from '../components/nav';
+import initStore from '../store';
+import { Link } from '../router';
 // import withRoot from "../lib/material-ui/withRoot";
-import Header from "../components/layout/header";
+import Header from '../components/layout/header';
 
 const Title = styled.h1`
   color: red;

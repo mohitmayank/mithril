@@ -1,6 +1,6 @@
-import React from "react";
-import { object } from "prop-types";
-import { Link } from "../router";
+import React from 'react';
+import { object } from 'prop-types';
+import { Link } from '../router';
 
 class Blog extends React.Component {
   static async getInitialProps({ query }) {

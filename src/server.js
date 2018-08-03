@@ -1,14 +1,14 @@
-const express = require("express");
-const next = require("next");
-const helmet = require("helmet");
-const mobxReact = require("mobx-react");
-const favicon = require("serve-favicon");
-const after = require("aftertime");
-const router = require("./router");
+const express = require('express');
+const next = require('next');
+const helmet = require('helmet');
+const mobxReact = require('mobx-react');
+const favicon = require('serve-favicon');
+const after = require('aftertime');
+const router = require('./router');
 
 module.exports = function () {
-  const dev = process.env.NODE_ENV !== "production";
-  const app = next({ dev, dir: "./src" });
+  const dev = process.env.NODE_ENV !== 'production';
+  const app = next({ dev, dir: './src' });
   // const handle = app.getRequestHandler();
   const routerHandler = router.getRequestHandler(app);
 
@@ -26,13 +26,13 @@ module.exports = function () {
       server.use(favicon(`${__dirname}/../assets/favicon.ico`));
 
       // Security Settings
-      server.enable("trust proxy", 1); // trust first proxy
-      server.set("trust proxy", 1); // trust first proxy
-      server.disable("x-powered-by"); // Don't advertise our server type
+      server.enable('trust proxy', 1); // trust first proxy
+      server.set('trust proxy', 1); // trust first proxy
+      server.disable('x-powered-by'); // Don't advertise our server type
       server.use(helmet.ieNoOpen()); // X-Download-Options for IE8+
       server.use(helmet.noSniff()); // Sets X-Content-Type-Options to nosniff
       server.use(helmet.xssFilter()); // sets the X-XSS-Protection header
-      server.use(helmet.frameguard({ action: "deny" })); // Prevent iframe clickjacking
+      server.use(helmet.frameguard({ action: 'deny' })); // Prevent iframe clickjacking
       /**
         * @TODO csrf
         */
@@ -46,7 +46,7 @@ module.exports = function () {
       // Google has a nice article about "strong" and "weak" caching.
       // It's worth a quick read if you don't know what that means.
       // https://developers.google.com/speed/docs/best-practices/caching
-      server.set("etag", true); // other values 'weak', 'strong'
+      server.set('etag', true); // other values 'weak', 'strong'
 
       // Now setup serving static assets from /assets
       server.use(express.static(

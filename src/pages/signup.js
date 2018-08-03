@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 // import { number, bool } from "prop-types";
-import styled from "styled-components";
-import CardPage from "../components/layout/cardpage";
+import styled from 'styled-components';
+import CardPage from '../components/layout/cardpage';
 
 const Title = styled.h1`
   font-size: 50px;
