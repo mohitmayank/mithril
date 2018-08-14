@@ -10,8 +10,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-import { SecondaryButton, Button } from '../blocks/Button';
-import { Link } from '../../router';
 import theme from '../../lib/theme';
 
 const BarWrapper = styled.div`
@@ -121,15 +119,7 @@ class Header extends React.Component {
                 </Menu>
               </div>
             ) : (
-              <>
-                <Link route='login' passHref>
-                  <Button variant='text' color='inherit'>Login</Button>
-                </Link>
-                &nbsp;&nbsp;
-                <Link route='register' passHref>
-                  <SecondaryButton>Register</SecondaryButton>
-                </Link>
-              </>
+              <></>
             )}
           </Toolbar>
         </TopBar>
