@@ -9,7 +9,6 @@ import PasswordField from '../blocks/PasswordField';
 import { H1 } from '../blocks/Heading';
 import FormError from '../blocks/FormError';
 import PagePaper from '../blocks/PagePaper';
-import { Router } from '../../router';
 
 class Auth {
   @observable email = '';
