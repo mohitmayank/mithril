@@ -21,8 +21,8 @@ class Footer extends React.Component {
   render() {
     return (
       <StyledFooter>
-        <Typography variant="body1">
-          &copy; {year} | <Link route="/"><a>{domain}</a></Link> | All Rights Reserved
+        <Typography variant='body1'>
+          &copy; {year} | <Link route='/'><a>{domain}</a></Link> | All Rights Reserved
         </Typography>
       </StyledFooter>
     );

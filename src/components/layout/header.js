@@ -1,5 +1,6 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, object } from 'prop-types';
+import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,6 +21,7 @@ const BarWrapper = styled.div`
 
 const TopBar = styled(AppBar)`
   && {
+    box-shadow : none;
     > div {
       height : ${(props) => props.theme.sizes.header.height};
     }
@@ -40,9 +42,9 @@ const MenuButton = styled(IconButton)`
 const LogoImage = styled.img`
 `;
 
+@inject('store') @observer
 class Header extends React.Component {
   state = {
-    auth: false,
     anchorEl: null,
   };
 
@@ -54,10 +56,6 @@ class Header extends React.Component {
     }
   };
 
-  handleChange = (event, checked) => {
-    this.setState({ auth: checked });
-  };
-
   handleMenu = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -66,17 +64,22 @@ class Header extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  handleLogout = () => {
+    this.setState({ anchorEl: null });
+    this.props.store.logout();
+  };
+
   render() {
-    const { auth, anchorEl } = this.state;
+    const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <BarWrapper>
-        <TopBar position="fixed" component="div">
-          <Toolbar variant="dense">
+        <TopBar position='fixed' component='div'>
+          <Toolbar variant='dense'>
             <MenuButton
-              color="inherit"
-              aria-label="Menu"
+              color='inherit'
+              aria-label='Menu'
               onClick={this.handleHamburgerMenu}
             >
               <MenuIcon />
@@ -84,23 +87,23 @@ class Header extends React.Component {
             <FlexDiv>
               <LogoImage
                 src={`${process.env.STATIC_DOMAIN}/public/images/logo.png`}
-                alt="valinor"
-                width="158"
-                height="35"
+                alt='Valinor'
+                width='158'
+                height='35'
               />
             </FlexDiv>
-            {auth ? (
+            {this.props.store.auth ? (
               <div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
+                  aria-haspopup='true'
                   onClick={this.handleMenu}
-                  color="inherit"
+                  color='inherit'
                 >
                   <AccountCircle />
                 </IconButton>
                 <Menu
-                  id="menu-appbar"
+                  id='menu-appbar'
                   anchorEl={anchorEl}
                   anchorOrigin={{
                     vertical: 'top',
@@ -113,18 +116,18 @@ class Header extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  {/* <MenuItem onClick={this.handleClose}>Profile</MenuItem> */}
+                  <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
             ) : (
               <>
-                <Link route="/" passHref>
-                  <Button variant="text" color="inherit">Login</Button>
+                <Link route='login' passHref>
+                  <Button variant='text' color='inherit'>Login</Button>
                 </Link>
                 &nbsp;&nbsp;
-                <Link route="signup" passHref>
-                  <SecondaryButton>Signup</SecondaryButton>
+                <Link route='register' passHref>
+                  <SecondaryButton>Register</SecondaryButton>
                 </Link>
               </>
             )}
@@ -139,6 +142,7 @@ Header.propTypes = {
   width: string,
   handleMobileAsideOpen: func,
   handleDesktopAsideToggle: func,
+  store: object,
 };
 
 export default withWidth()(Header);

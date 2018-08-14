@@ -1,4 +1,5 @@
 /* eslint no-console: ["error", { allow: ["info", "error"] }] */
+/* eslint import/no-commonjs: [0] */
 
 const express = require('express');
 const next = require('next');

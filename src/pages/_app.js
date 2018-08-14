@@ -5,14 +5,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { Provider } from 'mobx-react';
 import { ThemeProvider } from 'styled-components';
+import cookies from 'next-cookies';
 import getPageContext from '../lib/getPageContext';
 import { StoreFactory, getInitialState } from '../store';
 import theme from '../lib/theme';
 
+const sweet = process.env.AUTH_COOKIE;
+
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps;
-    let initialState = null;
+    let initialState = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
@@ -21,7 +24,7 @@ class MyApp extends App {
     const isServer = !!ctx.req;
 
     if (isServer && !process.browser) {
-      initialState = getInitialState();
+      initialState = await getInitialState(cookies(ctx)[sweet]);
     }
 
     return {

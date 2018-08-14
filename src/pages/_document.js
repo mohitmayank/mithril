@@ -11,24 +11,24 @@ class MyDocument extends Document {
     const { pageContext, styleTags } = this.props;
 
     return (
-      <html lang="en" dir="ltr">
+      <html lang='en' dir='ltr'>
         <Head>
           <title>My page</title>
-          <meta charSet="utf-8" />
+          <meta charSet='utf-8' />
           {styleTags}
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
-            name="viewport"
+            name='viewport'
             content={
               'user-scalable=0, initial-scale=1, '
               + 'minimum-scale=1, width=device-width, height=device-height'
             }
           />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta name='theme-color' content={pageContext.theme.palette.primary.main} />
           <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'
           />
         </Head>
         <body>
@@ -76,7 +76,7 @@ MyDocument.getInitialProps = (ctx) => {
     styles: (
       <React.Fragment>
         <style
-          id="jss-server-side"
+          id='jss-server-side'
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: uglifycss.processString(

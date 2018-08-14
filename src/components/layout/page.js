@@ -1,15 +1,23 @@
 import React from 'react';
 import {
-  oneOfType, arrayOf, node, string, object,
+  oneOfType, arrayOf, node, string, object, bool,
 } from 'prop-types';
 import styled from 'styled-components';
-import { autorun } from 'mobx';
+import { autorun, observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import Head from './head';
 import Header from './header';
 import Footer from './footer';
 import Aside from './aside';
 import theme from '../../lib/theme';
+import LoginForm from './login';
+
+const sideBarId = 'asideNavDrawer';
+const sideBarCloseMargin = `-${theme.sizes.aside.width}`;
+
+const DocWrapper = styled.div`
+  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+`;
 
 const PageWrapper = styled.div`
   position : fixed;
@@ -35,7 +43,7 @@ const AsideFlex = styled(Column)`
   flex-shrink: 0;
   width: ${(props) => props.theme.sizes.aside.width};
   position : relative;
-  margin-left : 0;
+  margin-left : ${sideBarCloseMargin};
   transition: margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
   @media (max-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
     display : none;
@@ -66,23 +74,26 @@ const PageContentContainer = styled.div`
   }
 `;
 
-const sideBarCloseMargin = `-${theme.sizes.aside.width}`;
-const sideBarId = 'asideNavDrawer';
-
 @inject('store') @observer
 class Page extends React.Component {
   state = {
     mobileAsideOpen: false,
   };
 
+  @observable forceHideAside = false;
+
   constructor(props) {
     super(props);
     this.store = this.props.store;
+    this.forceHideAside = props.withoutAside || !props.store.auth;
   }
 
   componentDidMount() {
+    this.disposeAuthListner = autorun(() => {
+      this.forceHideAside = this.props.withoutAside || !this.props.store.auth;
+    });
     this.disposeAsideListner = autorun(() => {
-      if (this.store.desktopAsideOpen) {
+      if (this.store.desktopAsideOpen && !this.forceHideAside) {
         document.getElementById(sideBarId).style.marginLeft = '0';
       } else {
         document.getElementById(sideBarId).style.marginLeft = sideBarCloseMargin;
@@ -92,10 +103,13 @@ class Page extends React.Component {
 
   componentWillUnmount() {
     this.disposeAsideListner();
+    this.disposeAuthListner();
   }
 
   handleDesktopAsideOpen = () => {
-    this.store.desktopAsideOpen = true;
+    if (!this.forceHideAside) {
+      this.store.desktopAsideOpen = true;
+    }
   };
 
   handleDesktopAsideClose = () => {
@@ -103,11 +117,15 @@ class Page extends React.Component {
   };
 
   handleDesktopAsideToggle = () => {
-    this.store.desktopAsideOpen = !this.store.desktopAsideOpen;
+    if (!this.forceHideAside) {
+      this.store.desktopAsideOpen = !this.store.desktopAsideOpen;
+    }
   };
 
   handleMobileAsideOpen = () => {
-    this.setState({ mobileAsideOpen: true });
+    if (!this.forceHideAside) {
+      this.setState({ mobileAsideOpen: true });
+    }
   };
 
   handleMobileAsideClose = () => {
@@ -115,7 +133,9 @@ class Page extends React.Component {
   };
 
   handleMobileAsideToggle = () => {
-    this.setState({ mobileAsideOpen: !this.state.mobileAsideOpen });
+    if (!this.forceHideAside) {
+      this.setState({ mobileAsideOpen: !this.state.mobileAsideOpen });
+    }
   };
 
   handleHamburgerMenu = () => {
@@ -124,8 +144,18 @@ class Page extends React.Component {
   }
 
   render() {
+    const asideStyle = {
+      marginLeft: '0',
+    };
+
+    if (this.store.desktopAsideOpen && !this.forceHideAside) {
+      asideStyle.marginLeft = '0';
+    } else {
+      asideStyle.marginLeft = sideBarCloseMargin;
+    }
+
     return (
-      <>
+      <DocWrapper>
         <Head title={this.props.title} />
         <Header
           handleMobileAsideOpen={this.handleMobileAsideOpen}
@@ -135,21 +165,23 @@ class Page extends React.Component {
           <ContentWrapper>
             <StyledMain>
               <PageContentContainer>
-                {this.props.children}
+                {!this.props.withoutLogin && !this.store.auth ? (
+                  <LoginForm title={this.props.loginCopy || 'Signin'} />
+                ) : this.props.children}
               </PageContentContainer>
             </StyledMain>
             <Footer/>
           </ContentWrapper>
-          <AsideFlex id={sideBarId}>
+          <AsideFlex id={sideBarId} style={asideStyle}>
             <Aside
-              desktopAsideOpen={this.state.desktopAsideOpen}
-              mobileAsideOpen={this.state.mobileAsideOpen}
+              desktopAsideOpen={this.store.desktopAsideOpen && !this.forceHideAside}
+              mobileAsideOpen={this.state.mobileAsideOpen && !this.forceHideAside}
               handleMobileAsideClose={this.handleMobileAsideClose}
               handleMobileAsideOpen={this.handleMobileAsideOpen}
             />
           </AsideFlex>
         </PageWrapper>
-      </>
+      </DocWrapper>
     );
   }
 }
@@ -158,6 +190,9 @@ Page.propTypes = {
   children: oneOfType([node, arrayOf(node)]),
   title: string,
   store: object,
+  withoutAside: bool,
+  withoutLogin: bool,
+  loginCopy: string,
 };
 
 export default Page;

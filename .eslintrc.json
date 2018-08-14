@@ -2,14 +2,23 @@
   "parser": "babel-eslint",
   "extends": [
     "airbnb-base",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": [
+    "import"
   ],
   "rules": {
     "semi" : [2, "always"],
     "arrow-parens": [2, "always"],
-    "no-underscore-dangle" : 0,
+    "no-underscore-dangle" : ["error", {"allow" : ["_id"]}],
+    "import/no-commonjs" : [2],
+    "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-uses-vars" : [2],
     "no-param-reassign" : ["error", { "props": false }],
+    "react/jsx-indent" : [2, 2],
+    "react/no-typos" : [2],
     "class-methods-use-this": ["error", {
       "exceptMethods": [
         "render",

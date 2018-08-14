@@ -1,34 +1,51 @@
 import React from 'react';
-// import { number, bool } from "prop-types";
-import styled from 'styled-components';
-import Page from '../components/layout/page';
+import { object } from 'prop-types';
+import { observer, inject } from 'mobx-react';
+import Typography from '@material-ui/core/Typography';
+import { H1 } from '../components/blocks/Heading';
+import CardPage from '../components/layout/cardpage';
+import { Button } from '../components/blocks/Button';
 
-const Title = styled.h1`
-  font-size: 50px;
-`;
-
+@inject('store') @observer
 class Index extends React.Component {
   static getInitialProps() {
     return {
     };
   }
 
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.store = props.store;
+  }
+
+  handleLogout = () => {
+    this.props.store.logout();
+  };
+
+  renderPage = () => (
+    <>
+      <H1 title='Hello there!' />
+      <br/>
+      <Typography gutterBottom>
+          You are Logged in as {this.store.auth.name}
+        <br/>
+        <br/>
+      </Typography>
+      <Button onClick={this.handleLogout}>Logout</Button>
+    </>
+  );
 
   render() {
     return (
-      <Page title="Home">
-        <Title>Hello</Title>
-      </Page>
+      <CardPage title='Hello there' >
+        {this.store.auth && this.renderPage()}
+      </CardPage>
     );
   }
 }
 
-// Index.propTypes = {
-//   isServer: bool,
-//   lastUpdate: number,
-// };
+Index.propTypes = {
+  store: object,
+};
 
 export default Index;

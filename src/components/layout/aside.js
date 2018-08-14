@@ -4,9 +4,10 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import styled from 'styled-components';
+import Nav from './nav';
 
 const AsideContainer = styled.div`
-  padding : ${(props) => props.theme.spacing.padding};
+  /*padding : ${(props) => props.theme.spacing.padding};*/
   margin-left : -1px;
   @media (max-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
     width : ${(props) => props.theme.sizes.aside.width};
@@ -26,15 +27,7 @@ const PersisentDrawer = styled(Drawer)`
 
 function drawer() {
   return <AsideContainer>
-    Hello
-    <br/>
-    <br/>
-    <br/>
-    <div style={{ height: '800px', display: 'none' }}></div>
-    <br/>
-    <br/>
-    asdasd
-    asdsad
+    <Nav />
   </AsideContainer>;
 }
 
@@ -51,8 +44,8 @@ class Aside extends React.Component {
     return <>
       <Hidden mdUp>
         <SwipeableDrawer
-          variant="temporary"
-          anchor="left"
+          variant='temporary'
+          anchor='left'
           open={this.props.mobileAsideOpen}
           onClose={this.props.handleMobileAsideClose}
           onOpen={this.props.handleMobileAsideOpen}
@@ -63,9 +56,9 @@ class Aside extends React.Component {
           {drawer()}
         </SwipeableDrawer>
       </Hidden>
-      <Hidden smDown implementation="css">
+      <Hidden smDown implementation='css'>
         <PersisentDrawer
-          variant="permanent"
+          variant='permanent'
           open={this.props.desktopAsideOpen}
         >
           {drawer()}
