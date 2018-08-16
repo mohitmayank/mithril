@@ -34,7 +34,9 @@
   "dependencies": {
     "@material-ui/core": "^1.4.0",
     "@material-ui/icons": "^1.1.0",
+    "@zeit/next-css": "^0.2.0",
     "aftertime": "^2.0.2",
+    "antd": "^3.8.1",
     "axios": "^0.18.0",
     "dotenv-safe": "^6.0.0",
     "express": "^4.16.3",
@@ -59,6 +61,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.6",
+    "babel-plugin-import": "^1.8.0",
     "babel-plugin-inline-dotenv": "^1.1.2",
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-class-properties": "^6.24.1",

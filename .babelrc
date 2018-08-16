@@ -1,6 +1,6 @@
 {
   "presets": [
-    "next/babel",
+    "next/babel"
   ],
   "env": {
     "development": {
@@ -13,6 +13,10 @@
           "displayName": true,
           "preprocess": false,
           "minify" : false
+        }],
+        ["import", {
+          "libraryName": "antd",
+          "style": "css"
         }]
       ]
     },
@@ -26,6 +30,10 @@
           "displayName": false,
           "preprocess": false,
           "minify" : true
+        }],
+        ["import", {
+          "libraryName": "antd",
+          "style": "css"
         }]
       ]
     }
