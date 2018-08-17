@@ -6,6 +6,5 @@ injectGlobal`
   // You can continue writing global styles
   body {
     font-family : 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif';
-    background : red;
   }
 `

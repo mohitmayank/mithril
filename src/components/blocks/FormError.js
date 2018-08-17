@@ -1,13 +1,18 @@
 import React from 'react';
 import { string } from 'prop-types';
-import Typography from '@material-ui/core/Typography';
+import  styled  from 'styled-components';
+import theme from '../../lib/theme';
 import Nbsp from 'react-nbsp';
+
+const ErrorMessage = styled.p`
+  color : ${theme.colors.danger}
+`;
 
 function FormError(props) {
   return (
-    <Typography color='error' gutterBottom>
+    <ErrorMessage>
       {props.error ? `Error : ${props.error}` : <Nbsp/>}
-    </Typography>
+    </ErrorMessage>
   );
 }
 

@@ -1,5 +1,6 @@
 const theme = {
   colors: {
+    danger : '#f5222d',
     text: {
       light: '#fff',
       dark: 'rgba(0,0,0,0.87)',
