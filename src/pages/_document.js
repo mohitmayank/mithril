@@ -5,7 +5,6 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { ServerStyleSheet } from 'styled-components';
 import uglifycss from 'uglifycss';
 import getPageContext from '../lib/getPageContext';
-import staticStyleSheet from '../.next/static/style.css';
 
 class MyDocument extends Document {
   render() {
@@ -30,8 +29,8 @@ class MyDocument extends Document {
             rel='stylesheet'
             href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'
           />
-          {/*<link rel='stylesheet' href='/_next/static/style.css' />*/}
-          <style dangerouslySetInnerHTML={{ __html: uglifycss.processString(staticStyleSheet) }} />
+          <link rel='stylesheet' href='/_next/static/style.css' />
+          {/*<style dangerouslySetInnerHTML={{ __html: uglifycss.processString(staticStyleSheet) }} />*/}
           {styleTags}
         </Head>
         <body>
