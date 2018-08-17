@@ -9,8 +9,10 @@ import cookies from 'next-cookies';
 import getPageContext from '../lib/getPageContext';
 import { StoreFactory, getInitialState } from '../store';
 import theme from '../lib/theme';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
-const sweet = process.env.AUTH_COOKIE;
+const sweet = publicRuntimeConfig.authCookie;
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

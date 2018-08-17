@@ -42,5 +42,9 @@ module.exports = withLess({
   },
   publicRuntimeConfig: {
     apiDomain: process.env.API_DOMAIN,
+    authCookie : process.env.AUTH_COOKIE,
+    staticDomain : process.env.STATIC_DOMAIN,
+    baseDomain : process.env.BASE_DOMAIN,
+    legalDomain : process.env.LEGAL_DOMAIN,
   },
 });

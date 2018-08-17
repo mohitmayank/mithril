@@ -4,7 +4,6 @@ import getConfig from 'next/config';
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
 /** @TODO parse json reponse, remove while(1) * */
-// const apiDomain = process.env.API_DOMAIN;
 let { apiDomain } = publicRuntimeConfig;
 
 if (serverRuntimeConfig && serverRuntimeConfig.serverApiDomain) {

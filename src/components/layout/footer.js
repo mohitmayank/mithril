@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import { Link } from '../../router';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
 const StyledFooter = styled.footer`
   text-align : center;
@@ -15,7 +17,7 @@ const StyledFooter = styled.footer`
 `;
 
 const year = (new Date()).getFullYear();
-const domain = process.env.LEGAL_DOMAIN;
+const domain = publicRuntimeConfig.legalDomain;
 
 class Footer extends React.Component {
   render() {

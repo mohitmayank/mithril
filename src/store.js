@@ -5,8 +5,10 @@ import Cookies from 'js-cookie';
 import { Api, AuthApi } from './lib/api';
 import { Router } from './router';
 // import getRandomString from "micro-helpers/getRandomString";
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
-const sweet = process.env.AUTH_COOKIE;
+const sweet = publicRuntimeConfig.authCookie;
 const isDev = process.env.NODE_ENV === 'development';
 
 let store = null;

@@ -11,6 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import theme from '../../lib/theme';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
 const BarWrapper = styled.div`
   flex-grow: 1;
@@ -84,7 +86,7 @@ class Header extends React.Component {
             </MenuButton>
             <FlexDiv>
               <LogoImage
-                src={`${process.env.STATIC_DOMAIN}/public/images/logo.png`}
+                src={`${publicRuntimeConfig.staticDomain}/public/images/logo.png`}
                 alt='Valinor'
                 width='158'
                 height='35'

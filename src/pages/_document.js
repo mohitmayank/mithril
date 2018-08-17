@@ -5,6 +5,12 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { ServerStyleSheet } from 'styled-components';
 import uglifycss from 'uglifycss';
 import getPageContext from '../lib/getPageContext';
+import fs from "fs";
+
+let staticStyleSheet = null;
+if (process.env.NODE_ENV === "production") {
+  staticStyleSheet = fs.readFileSync(`${process.cwd()}/src/.next/static/style.css`, "utf8");
+}
 
 class MyDocument extends Document {
   render() {
@@ -29,8 +35,12 @@ class MyDocument extends Document {
             rel='stylesheet'
             href='https://fonts.googleapis.com/css?family=Roboto:300,400,500'
           />
-          <link rel='stylesheet' href='/_next/static/style.css' />
           {/*<style dangerouslySetInnerHTML={{ __html: uglifycss.processString(staticStyleSheet) }} />*/}
+          {typeof staticStyleSheet === "string" ? (
+            <style dangerouslySetInnerHTML={{ __html: staticStyleSheet }} />
+          ) : (
+            <link rel="stylesheet" href="/_next/static/style.css" />
+          )}
           {styleTags}
         </Head>
         <body>

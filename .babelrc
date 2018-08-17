@@ -2,46 +2,22 @@
   "presets": [
     "next/babel"
   ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    ["styled-components", {
+      "ssr": true,
+      "displayName": true,
+      "preprocess": false,
+      "minify" : false
+    }],
+    ["import", {
+      "libraryName": "antd",
+      "style": true
+    }]
+  ],
   "env": {
-    "development": {
-      "plugins": [
-        "inline-dotenv",
-        "transform-decorators-legacy",
-        "transform-class-properties",
-        ["styled-components", {
-          "ssr": true,
-          "displayName": true,
-          "preprocess": false,
-          "minify" : false
-        }],
-        ["import", {
-          "libraryName": "antd",
-          "style": true
-        }],
-        ["inline-import", {
-          "extensions": [".css"]
-        }]
-      ]
-    },
-    "production": {
-      "plugins": [
-        "inline-dotenv",
-        "transform-decorators-legacy",
-        "transform-class-properties",
-        ["styled-components", {
-          "ssr": true,
-          "displayName": false,
-          "preprocess": false,
-          "minify" : true
-        }],
-        ["import", {
-          "libraryName": "antd",
-          "style": true
-        }],
-        ["inline-import", {
-          "extensions": [".css"]
-        }]
-      ]
-    }
+    "development": {},
+    "production": {}
   }
 }
