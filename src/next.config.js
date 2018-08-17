@@ -7,7 +7,11 @@ module.exports = withLess({
   lessLoaderOptions: {
     javascriptEnabled: true,
     // theme antd here
-    modifyVars: { '@primary-color': '#1Dd57A' },
+    modifyVars: {
+      '@primary-color': '#8bc34a',
+      '@font-family' : 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      '@input-bg' : '#efefef',
+    },
   },
   webpack: (config, options) => {
     // Fixes npm packages that depend on `fs` module

@@ -9,6 +9,9 @@ const PagePaper = styled(Paper)`
       box-shadow : none;
       border-radius : 0;
     }
+    > h1 {
+      margin-top : 0;
+    }
   }
 `;
 

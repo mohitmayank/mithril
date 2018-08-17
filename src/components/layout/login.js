@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import { Form, Input } from 'antd';
 import { PrimaryButton } from '../blocks/Button';
 // import PasswordField from '../blocks/PasswordField';
-import { H1 } from '../blocks/Heading';
 import FormError from '../blocks/FormError';
 import PagePaper from '../blocks/PagePaper';
 
@@ -47,7 +46,7 @@ const FormItem = Form.Item;
   render() {
     return (
       <PagePaper>
-        <H1 title={this.props.title} />
+        <h1>{this.props.title} </h1>
         <Grid container spacing={8}>
           <Grid item xs={12} sm={6}>
             <Form onSubmit={this.handleSubmit} layout='vertical'>
@@ -57,6 +56,7 @@ const FormItem = Form.Item;
                   name='email'
                   value={this.auth.email}
                   onChange={this.handleChange}
+                  size="large"
                   required
                 />
               </FormItem>
@@ -66,11 +66,12 @@ const FormItem = Form.Item;
                   name='password'
                   value={this.auth.password}
                   onChange={this.handleChange}
+                  size="large"
                   required
                 />
               </FormItem>
               <FormError error={this.state.error} />
-              <PrimaryButton type='submit'>Login</PrimaryButton>
+              <PrimaryButton htmlType="submit" >Login</PrimaryButton>
             </Form>
           </Grid>
           <Grid item xs={12} sm={6}>

@@ -1,26 +1,25 @@
-import MUIButton from '@material-ui/core/Button';
 import styled from 'styled-components';
+import { Button as AntButton } from 'antd';
 
-const Button = styled(MUIButton)`
+
+const Button = styled(AntButton)`
   && {
-    padding : 8px 20px;
+    /* doesnt do anything just left as an example of styled-components */
+    display : inherit;
   }
 `;
-
-Button.defaultProps = {
-  variant: 'contained',
-};
 
 const PrimaryButton = styled(Button)``;
 
 PrimaryButton.defaultProps = {
-  color: 'primary',
+  type: 'primary',
+  size : 'large',
 };
 
 const SecondaryButton = styled(Button)``;
 
 SecondaryButton.defaultProps = {
-  color: 'secondary',
+  type: 'secondary',
 };
 
 export {

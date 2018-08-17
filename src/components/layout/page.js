@@ -5,6 +5,7 @@ import {
 import styled from 'styled-components';
 import { autorun, observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
+import "./styles";
 import Head from './head';
 import Header from './header';
 import Footer from './footer';

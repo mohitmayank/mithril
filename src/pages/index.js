@@ -2,7 +2,6 @@ import React from 'react';
 import { object } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import Typography from '@material-ui/core/Typography';
-import { H1 } from '../components/blocks/Heading';
 import CardPage from '../components/layout/cardpage';
 import { Button } from '../components/blocks/Button';
 
@@ -24,7 +23,7 @@ class Index extends React.Component {
 
   renderPage = () => (
     <>
-      <H1 title='Hello there!' />
+      <h1>Hello there!</h1>
       <br/>
       <Typography gutterBottom>
           You are Logged in as {this.store.auth.name}
