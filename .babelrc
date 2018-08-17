@@ -17,6 +17,9 @@
         ["import", {
           "libraryName": "antd",
           "style": true
+        }],
+        ["inline-import", {
+          "extensions": [".css"]
         }]
       ]
     },
@@ -34,6 +37,9 @@
         ["import", {
           "libraryName": "antd",
           "style": true
+        }],
+        ["inline-import", {
+          "extensions": [".css"]
         }]
       ]
     }

@@ -28,6 +28,7 @@
       "src/server.js",
       "src/router.js",
       "src/next.config.js",
+      ".babelrc",
       "index.js"
     ]
   },
@@ -38,6 +39,7 @@
     "aftertime": "^2.0.2",
     "antd": "^3.8.1",
     "axios": "^0.18.0",
+    "babel-plugin-inline-import": "^3.0.0",
     "dotenv-safe": "^6.0.0",
     "express": "^4.16.3",
     "helmet": "^3.12.2",
