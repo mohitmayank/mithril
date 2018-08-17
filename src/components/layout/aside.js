@@ -7,11 +7,9 @@ import styled from 'styled-components';
 import Nav from './nav';
 
 const AsideContainer = styled.div`
-  /*padding : ${(props) => props.theme.spacing.padding};*/
   margin-left : -1px;
   @media (max-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
     width : ${(props) => props.theme.sizes.aside.width};
-    /*margin-top : ${(props) => props.theme.sizes.header.height}*/
   }
 `;
 

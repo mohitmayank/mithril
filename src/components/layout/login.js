@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 // import TextField from '@material-ui/core/TextField';
 import { Form, Input } from 'antd';
 import { PrimaryButton } from '../blocks/Button';
-import PasswordField from '../blocks/PasswordField';
+// import PasswordField from '../blocks/PasswordField';
 import { H1 } from '../blocks/Heading';
 import FormError from '../blocks/FormError';
 import PagePaper from '../blocks/PagePaper';

@@ -1,18 +1,39 @@
 /* eslint import/no-commonjs: [0] */
 /** @TODO move all config here via .env and remove .env babel plugin * */
-const withCss = require('@zeit/next-css')
+const withLess = require('@zeit/next-less');
+const resolve = require('resolve');
 
-// fix: prevents error when .css files are required by node
-if (typeof require !== 'undefined') {
-  require.extensions['.css'] = (file) => {}
-}
-
-module.exports = withCss({
-  webpack: (config) => {
+module.exports = withLess({
+  lessLoaderOptions: {
+    javascriptEnabled: true,
+    // theme antd here
+    modifyVars: { '@primary-color': '#1Dd57A' },
+  },
+  webpack: (config, options) => {
     // Fixes npm packages that depend on `fs` module
     config.node = {
       fs: 'empty',
     };
+
+    config.externals = [];
+    const { dir, isServer } = options;
+
+    if (isServer) {
+      config.externals.push((context, request, callback) => {
+        resolve(request, { basedir: dir, preserveSymlinks: true }, (err, res) => {
+          if (err) {
+            return callback();
+          }
+
+          // exclude webpack itself and antd from externals
+          if (res.match(/node_modules[/\\].*\.js/) && !res.match(/node_modules[/\\]webpack/) && !res.match(/node_modules[/\\]antd/)) {
+            return callback(null, `commonjs ${request}`);
+          }
+
+          return callback();
+        });
+      });
+    }
 
     return config;
   },
