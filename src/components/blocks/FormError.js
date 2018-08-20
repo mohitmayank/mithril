@@ -1,8 +1,8 @@
 import React from 'react';
 import { string } from 'prop-types';
-import  styled  from 'styled-components';
-import theme from '../../lib/theme';
+import styled from 'styled-components';
 import Nbsp from 'react-nbsp';
+import theme from '../../lib/theme';
 
 const ErrorMessage = styled.p`
   color : ${theme.colors.danger}

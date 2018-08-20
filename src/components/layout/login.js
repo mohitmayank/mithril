@@ -56,7 +56,7 @@ const FormItem = Form.Item;
                   name='email'
                   value={this.auth.email}
                   onChange={this.handleChange}
-                  size="large"
+                  size='large'
                   required
                 />
               </FormItem>
@@ -66,12 +66,12 @@ const FormItem = Form.Item;
                   name='password'
                   value={this.auth.password}
                   onChange={this.handleChange}
-                  size="large"
+                  size='large'
                   required
                 />
               </FormItem>
               <FormError error={this.state.error} />
-              <PrimaryButton htmlType="submit" >Login</PrimaryButton>
+              <PrimaryButton htmlType='submit' >Login</PrimaryButton>
             </Form>
           </Grid>
           <Grid item xs={12} sm={6}>

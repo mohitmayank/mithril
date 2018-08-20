@@ -2,10 +2,10 @@
 
 import { observable, action } from 'mobx';
 import Cookies from 'js-cookie';
+import getConfig from 'next/config';
 import { Api, AuthApi } from './lib/api';
 import { Router } from './router';
 // import getRandomString from "micro-helpers/getRandomString";
-import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
 const sweet = publicRuntimeConfig.authCookie;

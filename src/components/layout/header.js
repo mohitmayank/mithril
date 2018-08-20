@@ -2,16 +2,15 @@ import React from 'react';
 import { string, func, object } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-import theme from '../../lib/theme';
 import getConfig from 'next/config';
+import theme from '../../lib/theme';
+
 const { publicRuntimeConfig } = getConfig();
 
 const BarWrapper = styled.div`
@@ -19,13 +18,20 @@ const BarWrapper = styled.div`
   padding-bottom : 64px;
 `;
 
-const TopBar = styled(AppBar)`
+const TopBar = styled.div`
   && {
+    background-color : ${theme.colors.primary}
     box-shadow : none;
-    > div {
-      height : ${(props) => props.theme.sizes.header.height};
-    }
   }
+`;
+
+const Toolbar = styled.div`
+  height : ${(props) => props.theme.sizes.header.height};
+  padding-left: 16px;
+  padding-right : 16px;
+  display: flex;
+  position: relative;
+  align-items: center;
 `;
 
 const FlexDiv = styled.div`

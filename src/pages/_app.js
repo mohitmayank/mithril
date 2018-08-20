@@ -6,10 +6,11 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { Provider } from 'mobx-react';
 import { ThemeProvider } from 'styled-components';
 import cookies from 'next-cookies';
+import getConfig from 'next/config';
 import getPageContext from '../lib/getPageContext';
 import { StoreFactory, getInitialState } from '../store';
 import theme from '../lib/theme';
-import getConfig from 'next/config';
+
 const { publicRuntimeConfig } = getConfig();
 
 const sweet = publicRuntimeConfig.authCookie;

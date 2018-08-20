@@ -9,8 +9,8 @@ module.exports = withLess({
     // theme antd here
     modifyVars: {
       '@primary-color': '#8bc34a',
-      '@font-family' : 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      '@input-bg' : '#efefef',
+      '@font-family': 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
+      '@input-bg': '#efefef',
     },
   },
   webpack: (config, options) => {
@@ -46,9 +46,9 @@ module.exports = withLess({
   },
   publicRuntimeConfig: {
     apiDomain: process.env.API_DOMAIN,
-    authCookie : process.env.AUTH_COOKIE,
-    staticDomain : process.env.STATIC_DOMAIN,
-    baseDomain : process.env.BASE_DOMAIN,
-    legalDomain : process.env.LEGAL_DOMAIN,
+    authCookie: process.env.AUTH_COOKIE,
+    staticDomain: process.env.STATIC_DOMAIN,
+    baseDomain: process.env.BASE_DOMAIN,
+    legalDomain: process.env.LEGAL_DOMAIN,
   },
 });

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
-import { Link } from '../../router';
 import getConfig from 'next/config';
+import { Link } from '../../router';
+
 const { publicRuntimeConfig } = getConfig();
 
 const StyledFooter = styled.footer`

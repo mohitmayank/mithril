@@ -13,7 +13,7 @@ const PrimaryButton = styled(Button)``;
 
 PrimaryButton.defaultProps = {
   type: 'primary',
-  size : 'large',
+  size: 'large',
 };
 
 const SecondaryButton = styled(Button)``;
