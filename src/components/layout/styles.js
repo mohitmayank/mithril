@@ -1,3 +1,4 @@
+/* eslint-disable */
 import styledNormalize from 'styled-normalize';
 import { injectGlobal } from 'styled-components';
 
@@ -6,5 +7,6 @@ injectGlobal`
   // You can continue writing global styles
   body {
     font-family : 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif';
+    width : 100%!important;
   }
 `;

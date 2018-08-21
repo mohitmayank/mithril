@@ -3,24 +3,15 @@ import {
   oneOfType, arrayOf, node, string, object, bool,
 } from 'prop-types';
 import styled from 'styled-components';
-import { autorun, observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import './styles';
 import Head from './head';
 import Header from './header';
 import Footer from './footer';
 import Aside from './aside';
-import theme from '../../lib/theme';
 import LoginForm from './login';
 
-const sideBarId = 'asideNavDrawer';
-const sideBarCloseMargin = `-${theme.sizes.aside.width}`;
-
-const DocWrapper = styled.div`
-  font-family: 'Open Sans', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-`;
-
-const PageWrapper = styled.div`
+const DocumentWrapper = styled.div`
   position : fixed;
   left : 0;
   right : 0;
@@ -32,157 +23,68 @@ const PageWrapper = styled.div`
   flex-direction : row-reverse;
 `;
 
-const Column = styled.div`
-  height: 100%;
+const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;
-`;
-
-const AsideFlex = styled(Column)`
-  flex-shrink: 0;
-  width: ${(props) => props.theme.sizes.aside.width};
-  position : relative;
-  margin-left : ${sideBarCloseMargin};
-  transition: margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-  @media (max-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
-    display : none;
-  }
-`;
-
-const ContentWrapper = styled(Column)`
+  height: 100%;
   width : 100%;
   transition: all 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
   transition: all 1s ease-in-out;
   background-color : ${(props) => props.theme.colors.bg.body}
 `;
 
-const StyledMain = styled.main`
+const Main = styled.main`
   flex-grow : 1;
-  @media (min-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
+  @media (${(props) => props.theme.screen.gte[props.theme.breakpoints.aside]}) {
     padding-left : ${(props) => props.theme.spacing.padding};
     padding-right : ${(props) => props.theme.spacing.padding};
   }
 `;
 
-const PageContentContainer = styled.div`
+const PageWrapper = styled.div`
   max-width : ${(props) => props.theme.sizes.main.width};
   margin-left : auto;
   margin-right : auto;
-  @media (min-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
+  @media (${(props) => props.theme.screen.gte[props.theme.breakpoints.aside]}) {
     margin-top :  ${(props) => props.theme.spacing.padding};
   }
 `;
 
 @inject('store') @observer
 class Page extends React.Component {
-  state = {
-    mobileAsideOpen: false,
-  };
-
-  @observable forceHideAside = false;
-
   constructor(props) {
     super(props);
     this.store = this.props.store;
-    this.forceHideAside = props.withoutAside || !props.store.auth;
+    this.asideRef = React.createRef();
   }
-
-  componentDidMount() {
-    this.disposeAuthListner = autorun(() => {
-      this.forceHideAside = this.props.withoutAside || !this.props.store.auth;
-    });
-    this.disposeAsideListner = autorun(() => {
-      if (this.store.desktopAsideOpen && !this.forceHideAside) {
-        document.getElementById(sideBarId).style.marginLeft = '0';
-      } else {
-        document.getElementById(sideBarId).style.marginLeft = sideBarCloseMargin;
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this.disposeAsideListner();
-    this.disposeAuthListner();
-  }
-
-  handleDesktopAsideOpen = () => {
-    if (!this.forceHideAside) {
-      this.store.desktopAsideOpen = true;
-    }
-  };
-
-  handleDesktopAsideClose = () => {
-    this.store.desktopAsideOpen = false;
-  };
-
-  handleDesktopAsideToggle = () => {
-    if (!this.forceHideAside) {
-      this.store.desktopAsideOpen = !this.store.desktopAsideOpen;
-    }
-  };
-
-  handleMobileAsideOpen = () => {
-    if (!this.forceHideAside) {
-      this.setState({ mobileAsideOpen: true });
-    }
-  };
-
-  handleMobileAsideClose = () => {
-    this.setState({ mobileAsideOpen: false });
-  };
-
-  handleMobileAsideToggle = () => {
-    if (!this.forceHideAside) {
-      this.setState({ mobileAsideOpen: !this.state.mobileAsideOpen });
-    }
-  };
 
   handleHamburgerMenu = () => {
-    this.handleMobileAsideOpen();
-    this.handleDesktopAsideToggle();
+    this.asideRef.current.toggle();
   }
 
   render() {
-    const asideStyle = {
-      marginLeft: '0',
-    };
-
-    if (this.store.desktopAsideOpen && !this.forceHideAside) {
-      asideStyle.marginLeft = '0';
-    } else {
-      asideStyle.marginLeft = sideBarCloseMargin;
-    }
-
     return (
-      <DocWrapper>
+      <>
         <Head title={this.props.title} />
         <Header
-          handleMobileAsideOpen={this.handleMobileAsideOpen}
-          handleDesktopAsideToggle={this.handleDesktopAsideToggle}
+          handleHamburgerMenu={this.handleHamburgerMenu}
         />
-        <PageWrapper>
-          <ContentWrapper>
-            <StyledMain>
-              <PageContentContainer>
+        <DocumentWrapper>
+          <MainWrapper>
+            <Main>
+              <PageWrapper>
                 {!this.props.withoutLogin && !this.store.auth ? (
                   <LoginForm title={this.props.loginCopy || 'Signin'} />
                 ) : this.props.children}
-              </PageContentContainer>
-            </StyledMain>
+              </PageWrapper>
+            </Main>
             <Footer/>
-          </ContentWrapper>
-          <AsideFlex id={sideBarId} style={asideStyle}>
-            <Aside
-              desktopAsideOpen={this.store.desktopAsideOpen && !this.forceHideAside}
-              mobileAsideOpen={this.state.mobileAsideOpen && !this.forceHideAside}
-              handleMobileAsideClose={this.handleMobileAsideClose}
-              handleMobileAsideOpen={this.handleMobileAsideOpen}
-            />
-          </AsideFlex>
-        </PageWrapper>
-      </DocWrapper>
+          </MainWrapper>
+          <Aside innerRef={this.asideRef} forceHide={this.props.withoutAside || !this.store.auth} />
+        </DocumentWrapper>
+      </>
     );
   }
 }

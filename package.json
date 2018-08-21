@@ -33,17 +33,15 @@
     ]
   },
   "dependencies": {
-    "@material-ui/core": "^1.4.0",
-    "@material-ui/icons": "^1.1.0",
     "@zeit/next-less": "^0.3.0",
     "aftertime": "^2.0.2",
     "antd": "^3.8.1",
     "axios": "^0.18.0",
     "dotenv-safe": "^6.0.0",
+    "enquire.js": "https://github.com/mohitmayank/enquire.js.git",
     "express": "^4.16.3",
     "helmet": "^3.12.2",
     "js-cookie": "^2.2.0",
-    "jss": "^9.8.7",
     "less": "^3.8.1",
     "micro-helpers": "^1.1.0",
     "mobx": "^5.0.3",
@@ -54,13 +52,12 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-jss": "^8.6.1",
+    "react-icons": "^3.0.5",
     "react-nbsp": "^1.2.1",
     "resolve": "^1.8.1",
     "serve-favicon": "^2.5.0",
     "styled-components": "^3.3.3",
-    "styled-normalize": "^8.0.0",
-    "uglifycss": "^0.0.29"
+    "styled-normalize": "^8.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

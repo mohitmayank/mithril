@@ -1,75 +1,126 @@
 import React from 'react';
-import { bool, func } from 'prop-types';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import styled from 'styled-components';
+import { bool, object } from 'prop-types';
+import { Drawer } from 'antd';
+import enquire from 'enquire.js';
+import { styled, withTheme } from 'styled-components';
 import Nav from './nav';
 
-const AsideContainer = styled.div`
-  margin-left : -1px;
-  @media (max-width: ${(props) => props.theme.misc.menuMediaBreakPoint(props.theme.mui)}) {
-    width : ${(props) => props.theme.sizes.aside.width};
+
+const AsideFlex = styled.aside`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  flex-shrink: 0;
+  width: ${(props) => props.theme.sizes.aside.width};
+  position : relative;
+  margin-left: -${(props) => props.theme.sizes.aside.width};
+  transition: margin 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  background : #fff;
+  @media (${(props) => props.theme.screen.lte[props.theme.breakpoints.aside]}) {
+    display : none;
   }
 `;
 
-const PersisentDrawer = styled(Drawer)`
-  >div {
-    position : absolute;
-    display : block;
-    height : 100%;
-    right : 0;
-    left : 0;
-  }
+AsideFlex.propTypes = {
+  theme: object,
+};
+
+const PersistentAside = styled.div`
+  position : absolute;
+  display : block;
+  height : 100%;
+  right : 0;
+  left : 0;
 `;
 
-function drawer() {
-  return <AsideContainer>
-    <Nav />
-  </AsideContainer>;
-}
 
 class Aside extends React.Component {
   state = {
-    mobileOpen: false,
+    persistent: false,
+    visible: false,
+    collapsed: false,
+  }
+
+  constructor(props) {
+    super(props);
+    this.asideQuery = `screen and (${this.props.theme.screen.gte[this.props.theme.breakpoints.aside]})`;
+  }
+
+  componentDidMount() {
+    if (process.browser) {
+      enquire.register(this.asideQuery, {
+        match: () => this.setState({
+          persistent: true,
+          visible: false,
+        }),
+        unmatch: () => this.setState({
+          persistent: false,
+        }),
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    enquire.unregister(this.asideQuery);
+  }
+
+  hide = () => {
+    this.setState({
+      visible: false,
+    });
   };
 
-  handleDrawerToggle = () => {
-    this.setState((state) => ({ mobileOpen: !state.mobileOpen }));
+  toggle = () => {
+    if (this.state.persistent) {
+      this.setState({
+        collapsed: !this.state.collapsed,
+      });
+    } else {
+      this.setState({
+        visible: !this.state.visible,
+      });
+    }
   };
 
   render() {
-    return <>
-      <Hidden mdUp>
-        <SwipeableDrawer
-          variant='temporary'
-          anchor='left'
-          open={this.props.mobileAsideOpen}
-          onClose={this.props.handleMobileAsideClose}
-          onOpen={this.props.handleMobileAsideOpen}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-        >
-          {drawer()}
-        </SwipeableDrawer>
-      </Hidden>
-      <Hidden smDown implementation='css'>
-        <PersisentDrawer
-          variant='permanent'
-          open={this.props.desktopAsideOpen}
-        >
-          {drawer()}
-        </PersisentDrawer>
-      </Hidden>
-    </>;
+    const asideStyle = {
+      marginLeft: '0',
+    };
+
+    if (this.state.persistent && !this.state.collapsed) {
+      asideStyle.marginLeft = '0';
+    } else {
+      asideStyle.marginLeft = `-${this.props.theme.sizes.aside.width}`;
+    }
+
+    return (
+      <>
+        {!this.props.forceHide && (
+          <AsideFlex style={asideStyle}>
+            {this.state.persistent ? (
+              <PersistentAside>
+                <Nav/>
+              </PersistentAside>
+            ) : (
+              <Drawer
+                placement='left'
+                closable={false}
+                onClose={this.hide}
+                visible={this.state.visible}
+              ><Nav/></Drawer>
+            )}
+          </AsideFlex>
+        )}
+      </>
+    );
   }
 }
 
 Aside.propTypes = {
-  mobileAsideOpen: bool,
-  desktopAsideOpen: bool,
-  handleMobileAsideClose: func,
-  handleMobileAsideOpen: func,
+  forceHide: bool,
+  theme: object,
 };
-export default Aside;
+
+export default withTheme(Aside);

@@ -1,9 +1,8 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { observer, inject } from 'mobx-react';
-import Typography from '@material-ui/core/Typography';
 import CardPage from '../components/layout/cardpage';
-import { Button } from '../components/blocks/Button';
+import { SecondaryButton } from '../components/blocks/Button';
 
 @inject('store') @observer
 class Index extends React.Component {
@@ -25,12 +24,12 @@ class Index extends React.Component {
     <>
       <h1>Hello there!</h1>
       <br/>
-      <Typography gutterBottom>
+      <p>
           You are Logged in as {this.store.auth.name}
         <br/>
         <br/>
-      </Typography>
-      <Button onClick={this.handleLogout}>Logout</Button>
+      </p>
+      <SecondaryButton onClick={this.handleLogout}>Logout</SecondaryButton>
     </>
   );
 

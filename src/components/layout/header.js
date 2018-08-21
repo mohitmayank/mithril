@@ -1,24 +1,21 @@
 import React from 'react';
-import { string, func, object } from 'prop-types';
+import { func, object } from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import { Menu, Dropdown } from 'antd';
+import { MdMenu, MdAccountCircle } from 'react-icons/md';
 import getConfig from 'next/config';
+import { CircleButton } from '../blocks/Button';
 import theme from '../../lib/theme';
 
 const { publicRuntimeConfig } = getConfig();
 
-const BarWrapper = styled.div`
+const HeaderWrapper = styled.header`
   flex-grow: 1;
   padding-bottom : 64px;
 `;
 
-const TopBar = styled.div`
+const BarWrapper = styled.div`
   && {
     background-color : ${theme.colors.primary}
     box-shadow : none;
@@ -38,7 +35,7 @@ const FlexDiv = styled.div`
   flex-grow : 1;
 `;
 
-const MenuButton = styled(IconButton)`
+const MenuButton = styled(CircleButton)`
   && {
     margin-left : -12px;
     margin-right : 20px;
@@ -50,46 +47,28 @@ const LogoImage = styled.img`
 
 @inject('store') @observer
 class Header extends React.Component {
-  state = {
-    anchorEl: null,
-  };
-
-  handleHamburgerMenu = () => {
-    if (isWidthUp(theme.misc.menuBreakPoint, this.props.width)) {
-      this.props.handleDesktopAsideToggle();
-    } else {
-      this.props.handleMobileAsideOpen();
-    }
-  };
-
-  handleMenu = (event) => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
   handleLogout = () => {
     this.setState({ anchorEl: null });
     this.props.store.logout();
   };
 
-  render() {
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
-
+  accountMenu() {
     return (
-      <BarWrapper>
-        <TopBar position='fixed' component='div'>
+      <Menu>
+        <Menu.Item key='0' onClick={this.handleLogout}>Logout</Menu.Item>
+      </Menu>
+    );
+  }
+
+  render() {
+    return (
+      <HeaderWrapper>
+        <BarWrapper position='fixed' component='div'>
           <Toolbar variant='dense'>
             <MenuButton
-              color='inherit'
               aria-label='Menu'
-              onClick={this.handleHamburgerMenu}
-            >
-              <MenuIcon />
-            </MenuButton>
+              onClick={this.props.handleHamburgerMenu}
+            ><MdMenu size={24}/></MenuButton>
             <FlexDiv>
               <LogoImage
                 src={`${publicRuntimeConfig.staticDomain}/public/images/logo.png`}
@@ -99,49 +78,25 @@ class Header extends React.Component {
               />
             </FlexDiv>
             {this.props.store.auth ? (
-              <div>
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : null}
+              <Dropdown overlay={this.accountMenu()} trigger={['click']}>
+                <CircleButton
                   aria-haspopup='true'
-                  onClick={this.handleMenu}
                   color='inherit'
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id='menu-appbar'
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  {/* <MenuItem onClick={this.handleClose}>Profile</MenuItem> */}
-                  <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
-                </Menu>
-              </div>
+                ><MdAccountCircle size={24} /></CircleButton>
+              </Dropdown>
             ) : (
               <></>
             )}
           </Toolbar>
-        </TopBar>
-      </BarWrapper>
+        </BarWrapper>
+      </HeaderWrapper>
     );
   }
 }
 
 Header.propTypes = {
-  width: string,
-  handleMobileAsideOpen: func,
-  handleDesktopAsideToggle: func,
+  handleHamburgerMenu: func,
   store: object,
 };
 
-export default withWidth()(Header);
-// export default Header;
+export default Header;

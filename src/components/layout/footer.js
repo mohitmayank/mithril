@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Typography from '@material-ui/core/Typography';
 import getConfig from 'next/config';
 import { Link } from '../../router';
 
@@ -24,9 +23,9 @@ class Footer extends React.Component {
   render() {
     return (
       <StyledFooter>
-        <Typography variant='body1'>
+        <p>
           &copy; {year} | <Link route='/'><a>{domain}</a></Link> | All Rights Reserved
-        </Typography>
+        </p>
       </StyledFooter>
     );
   }

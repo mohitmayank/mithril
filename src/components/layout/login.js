@@ -2,11 +2,10 @@ import React from 'react';
 import { object, string } from 'prop-types';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
-// import TextField from '@material-ui/core/TextField';
-import { Form, Input } from 'antd';
+import { Row, Col, Form } from 'antd';
 import { PrimaryButton } from '../blocks/Button';
-// import PasswordField from '../blocks/PasswordField';
+import Input from '../blocks/Input';
+import PasswordInput from '../blocks/PasswordInput';
 import FormError from '../blocks/FormError';
 import PagePaper from '../blocks/PagePaper';
 
@@ -47,8 +46,8 @@ const FormItem = Form.Item;
     return (
       <PagePaper>
         <h1>{this.props.title} </h1>
-        <Grid container spacing={8}>
-          <Grid item xs={12} sm={6}>
+        <Row>
+          <Col xs={24} sm={12}>
             <Form onSubmit={this.handleSubmit} layout='vertical'>
               <FormItem label='Email'>
                 <Input
@@ -61,8 +60,7 @@ const FormItem = Form.Item;
                 />
               </FormItem>
               <FormItem label='Password'>
-                <Input
-                  type='password'
+                <PasswordInput
                   name='password'
                   value={this.auth.password}
                   onChange={this.handleChange}
@@ -73,10 +71,10 @@ const FormItem = Form.Item;
               <FormError error={this.state.error} />
               <PrimaryButton htmlType='submit' >Login</PrimaryButton>
             </Form>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-          </Grid>
-        </Grid>
+          </Col>
+          <Col xs={24} sm={12}>
+          </Col>
+        </Row>
       </PagePaper>
     );
   }

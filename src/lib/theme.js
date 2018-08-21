@@ -9,6 +9,7 @@ const theme = {
     bg: {
       body: '#F3F2F5',
       content: '#fff',
+      input: '#efefef',
     },
   },
   sizes: {
@@ -28,11 +29,20 @@ const theme = {
   spacing: {
     padding: '10px',
   },
-  misc: {
-    menuBreakPoint: 'md',
-    menuMediaBreakPoint(mui) {
-      return `${mui.breakpoints.values[theme.misc.menuBreakPoint]}px`;
+  screen: {
+    gte: {
+      sm: 'min-width: 768px',
+      md: 'min-width: 992px',
+      lg: 'min-width: 1200px',
     },
+    lte: {
+      sm: 'max-width: 768px',
+      md: 'max-width: 992px',
+      lg: 'max-width: 1200px',
+    },
+  },
+  breakpoints: {
+    aside: 'md',
   },
 };
 
