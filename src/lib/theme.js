@@ -1,4 +1,8 @@
+/* eslint import/no-commonjs: [0] */
 const theme = {
+  fonts: {
+    body: 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
+  },
   colors: {
     primary: '#8bc34a',
     danger: '#f5222d',
@@ -46,4 +50,4 @@ const theme = {
   },
 };
 
-export default theme;
+module.exports = theme;

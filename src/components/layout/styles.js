@@ -6,7 +6,7 @@ injectGlobal`
   ${styledNormalize}
   // You can continue writing global styles
   body {
-    font-family : 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif';
+    font-family : ${(props) => props.theme.fonts.body};
     width : 100%!important;
   }
 `;

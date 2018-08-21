@@ -2,15 +2,16 @@
 /** @TODO move all config here via .env and remove .env babel plugin * */
 const withLess = require('@zeit/next-less');
 const resolve = require('resolve');
+const theme = require('./lib/theme');
 
 module.exports = withLess({
   lessLoaderOptions: {
     javascriptEnabled: true,
     // theme antd here
     modifyVars: {
-      '@primary-color': '#8bc34a',
-      '@font-family': 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
-      '@input-bg': '#efefef',
+      '@primary-color': theme.colors.primary,
+      '@font-family': theme.fonts.body,
+      '@input-bg': theme.colors.bg.input,
     },
   },
   webpack: (config, options) => {
