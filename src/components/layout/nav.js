@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Menu as AntMenu } from 'antd';
 import { MdHome } from 'react-icons/md';
 import { Link } from '../../router';
-import theme from '../../lib/theme';
 
 const Menu = styled(AntMenu)`
   border-right : none;
@@ -12,7 +11,7 @@ const Menu = styled(AntMenu)`
 const Anchor = styled.a`
   >span {
     vertical-align : middle;
-    padding-left : ${theme.spacing.padding};
+    padding-left : ${(props) => props.theme.spacing.padding};
   }
   > svg {
     vertical-align : middle;

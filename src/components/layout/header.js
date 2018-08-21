@@ -6,7 +6,6 @@ import { Menu, Dropdown } from 'antd';
 import { MdMenu, MdAccountCircle } from 'react-icons/md';
 import getConfig from 'next/config';
 import { CircleButton } from '../blocks/Button';
-import theme from '../../lib/theme';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -17,7 +16,7 @@ const HeaderWrapper = styled.header`
 
 const BarWrapper = styled.div`
   && {
-    background-color : ${theme.colors.primary}
+    background-color : ${(props) => props.theme.colors.primary}
     box-shadow : none;
   }
 `;

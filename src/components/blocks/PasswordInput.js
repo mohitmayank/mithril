@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import Input from './Input';
 import { FieldIconButton } from './Button';
-import theme from '../../lib/theme';
 
 const InputWrapper = styled.div`
   && {
@@ -11,7 +10,7 @@ const InputWrapper = styled.div`
       border-right : 0;
     }
     >span>span>span {
-      background : ${theme.colors.bg.input};
+      background : ${(props) => props.theme.colors.bg.input};
     }
   }
 `;

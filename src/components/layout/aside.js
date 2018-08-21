@@ -2,7 +2,7 @@ import React from 'react';
 import { bool, object } from 'prop-types';
 import { Drawer } from 'antd';
 import enquire from 'enquire.js';
-import { styled, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import Nav from './nav';
 
 
