@@ -10,9 +10,13 @@ const StyledFooter = styled.footer`
   width : 100%;
   padding : ${(props) => props.theme.spacing.padding}
   background-color : ${(props) => props.theme.colors.bg.body}
-  >p>a {
-    text-decoration : none;
-    color : inherit;
+  >p {
+    color : ${(props) => props.theme.colors.text.secondary};
+    margin : 0;
+    >a {
+      text-decoration : none;
+      color : inherit;
+    }
   }
 `;
 

@@ -9,6 +9,7 @@ const theme = {
     text: {
       light: '#fff',
       dark: 'rgba(0,0,0,0.87)',
+      secondary : 'rgba(0,0,0,0.60)',
     },
     bg: {
       body: '#F3F2F5',
