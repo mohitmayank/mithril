@@ -67,6 +67,7 @@ class Header extends React.Component {
             <MenuButton
               aria-label='Menu'
               onClick={this.props.handleHamburgerMenu}
+              disabled={this.props.hideMenuButton}
             ><MdMenu size={24}/></MenuButton>
             <FlexDiv>
               <LogoImage

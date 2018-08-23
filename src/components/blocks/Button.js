@@ -42,6 +42,12 @@ const CircleButton = styled(BlankButton)`
     &:hover {
       background : rgba(0, 0, 0, 0.08);
     }
+    &:disabled {
+      color : gray;
+        &:hover {
+          background : inherit;
+        }
+    }
   }
 `;
 

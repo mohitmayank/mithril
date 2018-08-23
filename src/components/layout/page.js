@@ -70,6 +70,7 @@ class Page extends React.Component {
         <Head title={this.props.title} />
         <Header
           handleHamburgerMenu={this.handleHamburgerMenu}
+          hideMenuButton={this.props.withoutAside || !this.store.auth}
         />
         <DocumentWrapper>
           <MainWrapper>
