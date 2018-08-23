@@ -2,38 +2,34 @@ import React from 'react';
 import { object, string } from 'prop-types';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
-import { Row, Col, Form } from 'antd';
+import * as yup from 'yup'; // for everything
+import { Row, Col } from 'antd';
+import Form from '../blocks/Form';
 import { PrimaryButton } from '../blocks/Button';
 import Input from '../blocks/Input';
-import PasswordInput from '../blocks/PasswordInput';
+import FormField from '../blocks/FormField';
 import FormError from '../blocks/FormError';
 import PagePaper from '../blocks/PagePaper';
 
-class Auth {
-  @observable email = '';
-
-  @observable password = '';
-}
 
 const FormItem = Form.Item;
 
 @inject('store') @observer class LoginForm extends React.Component {
   state = {
-    error: '',
+    error : '',
   };
+
+  schema = yup.object().shape({
+    email : yup.string().label('Email').email().required(),
+    password : yup.string().label('Password').required(),
+  });
 
   constructor(props) {
     super(props);
     this.store = this.props.store;
-    this.auth = new Auth();
   }
 
-  handleChange = (e) => {
-    this.auth[e.target.name] = e.target.value;
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (values) => {
     // this.store.api.post('/auth').then((res) => {
     //   this.store.registerAuth(res.data.token, res.data, true);
     // }).catch((error) => this.setState({ error }));
@@ -48,26 +44,15 @@ const FormItem = Form.Item;
         <h1>{this.props.title} </h1>
         <Row>
           <Col xs={24} sm={12}>
-            <Form onSubmit={this.handleSubmit} layout='vertical'>
-              <FormItem label='Email'>
-                <Input
-                  type='email'
-                  name='email'
-                  value={this.auth.email}
-                  onChange={this.handleChange}
-                  size='large'
-                  required
-                />
-              </FormItem>
-              <FormItem label='Password'>
-                <PasswordInput
-                  name='password'
-                  value={this.auth.password}
-                  onChange={this.handleChange}
-                  size='large'
-                  required
-                />
-              </FormItem>
+            <Form onSubmit={this.onSubmit} layout='vertical' schema={this.schema}>
+              <FormField
+                type='email'
+                name='email'
+              />
+              <FormField
+                type='password'
+                name='password'
+              />
               <FormError error={this.state.error} />
               <PrimaryButton htmlType='submit' >Login</PrimaryButton>
             </Form>

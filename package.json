@@ -18,8 +18,8 @@
     "serve": "NODE_ENV=production node index.js",
     "lint:test": "eslint index.js tests/",
     "lint:test:fix": "eslint --fix index.js tests/",
-    "lint": "eslint index.js src/ tests/",
-    "lint:fix": "eslint --fix index.js src/ tests/",
+    "lint": "eslint --ignore-path .gitignore index.js src/ tests/",
+    "lint:fix": "eslint --fix --ignore-path .gitignore index.js src/ tests/",
     "lint:dev": "eslint --fix --ignore-path .gitignore --rule 'no-console:[0]' index.js src/ tests/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -56,7 +56,8 @@
     "react-nbsp": "^1.2.1",
     "resolve": "^1.8.1",
     "serve-favicon": "^2.5.0",
-    "styled-components": "^3.3.3"
+    "styled-components": "^3.3.3",
+    "yup": "^0.26.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

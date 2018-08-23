@@ -1,5 +1,5 @@
 /* eslint import/no-commonjs: [0] */
-/** @TODO move all config here via .env and remove .env babel plugin * */
+
 const withLess = require('@zeit/next-less');
 const resolve = require('resolve');
 const theme = require('./lib/theme');
